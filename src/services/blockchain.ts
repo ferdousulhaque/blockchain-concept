@@ -1,14 +1,15 @@
 import { SHA256 } from "crypto-js";
 import { Block } from "../block";
-import { contract } from "./contract";
+import { Contract } from "./contract";
 import moment from 'moment';
 
 
-class Blockchain implements contract{
-    blockchain!: Block;
+class Blockchain implements Contract {
+    blockchain: Block[] = [];
 
     constructor() {
-        // this.blockchain = [];
+        // Create our genesis kickoff block
+        this.blockchain = [new Block(0, new Date, JSON.stringify({"name": "Ferdous"}), "")];
     }
 
     generateHash(previousBlock: string): any{
@@ -16,26 +17,38 @@ class Blockchain implements contract{
     }
 
     previousBlock(): Block{
-        return new Block(0, new Date(), JSON.stringify({ "test": 1 }), "");
+        return this.blockchain[this.blockchain.length - 1];
     }
 
-    generateBlock(){
-        return "";
+    generateBlock(data: any): Block{
+        return new Block(0, new Date(), JSON.stringify(data), "");
     }
 
     proofOfWork(){
-        return "";
+        // Iterate over the chain, we need to set i to 1 because there are nothing before the genesis block, so we start at the second block.
+        for (let i = 1; i < this.blockchain.length; i++) {
+            const currentBlock = this.blockchain[i];
+            const prevBlock = this.blockchain[i - 1];
+
+            // Check validation
+            if (currentBlock.hash !== currentBlock.getHash() || prevBlock.hash !== currentBlock.previousHash) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    mining(){
-        return "";
-    }
+    appendToChain(newTransaction: any) {
+        let previousBlockHash = this.previousBlock().getHash();
+        let newBlock = new Block(1, new Date(), newTransaction, previousBlockHash);
+        this.blockchain.push(newBlock);
 
-    appendToChain() {
-        // newBlock.nextHash = this.latestBlock().hash;
-        // newBlock.hash = newBlock.computeHash();
-        // this.block1chain.push(newBlock);
     }
 
 
+}
+
+export {
+    Blockchain
 }

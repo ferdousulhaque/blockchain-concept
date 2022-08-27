@@ -1,6 +1,6 @@
 import { Block } from "../block";
 
-interface contract {
+interface Contract {
     // For generating the hash of the previous block
     generateHash(previousBlock: string): any;
 
@@ -8,18 +8,15 @@ interface contract {
     previousBlock(): Block;
 
     // Generating a single block for adding in the chain
-    generateBlock(): any;
+    generateBlock(data: any): any;
 
-    // Proof of work for calculation
+    // Proof of work for calculation to confirm the integrity of the chain
     proofOfWork(): any;
 
-    // For mining, the blocks
-    mining(): any;
-
     // For appening to the block chain
-    appendToChain(): any;
+    appendToChain(newTransaction: any): void;
 }
 
 export {
-    contract
+    Contract
 };
