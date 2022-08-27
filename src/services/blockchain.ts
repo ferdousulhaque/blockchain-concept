@@ -6,8 +6,11 @@ import moment from 'moment';
 
 class Blockchain implements Contract {
     blockchain: Block[] = [];
+    difficulty: number;
 
     constructor() {
+        this.difficulty = 1;
+
         // Create our genesis kickoff block
         this.blockchain = [new Block(0, new Date, JSON.stringify({"name": "Ferdous"}), "")];
     }
@@ -42,8 +45,8 @@ class Blockchain implements Contract {
     appendToChain(newTransaction: any) {
         let previousBlockHash = this.previousBlock().getHash();
         let newBlock = new Block(1, new Date(), newTransaction, previousBlockHash);
-        this.blockchain.push(newBlock);
-
+        // newBlock.mine(this.difficulty);
+        this.blockchain.push(Object.freeze(newBlock));
     }
 
 

@@ -6,6 +6,7 @@ class Block {
     info;
     previousHash;
     hash;
+    nonce;
 
     constructor(index: any, current_time: Date, info: any, previousHash = " ") {
         this.index = index;
@@ -13,6 +14,7 @@ class Block {
         this.info = info;
         this.previousHash = previousHash;
         this.hash = this.getHash();
+        this.nonce = 0;
         return this;
     }
 
@@ -23,12 +25,12 @@ class Block {
     mine(difficulty: number) {
         // Basically, it loops until our hash starts with 
         // the string 0...000 with length of <difficulty>.
-        // while (!this.hash.startsWith(Array(difficulty + 1).join("0"))) {
-        //     // We increases our nonce so that we can get a whole different hash.
-        //     this.nonce++;
-        //     // Update our new hash with the new nonce value.
-        //     this.hash = this.getHash();
-        // }
+        while (!this.hash.startsWith(Array(difficulty + 1).join("0"))) {
+            // We increases our nonce so that we can get a whole different hash.
+            this.nonce++;
+            // Update our new hash with the new nonce value.
+            this.hash = this.getHash();
+        }
     }
 }
 

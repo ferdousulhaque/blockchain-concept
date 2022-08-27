@@ -4,17 +4,19 @@ class AssetTracking {
     blockchain;
     asset = {
         name: "",
-        state: false
+        state: false,
+        currentOwnerId: 0
     };
 
     constructor(blockchain: Contract){
         this.blockchain = blockchain;
     }
 
-    addAssetToInventory(name: string, state: boolean){
+    addAssetToInventory(name: string, state: boolean, ownerId: number){
         this.asset = {
             name: name,
-            state: state
+            state: state,
+            currentOwnerId: ownerId
         };
 
         this.blockchain.appendToChain(this.asset);
