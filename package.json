@@ -1,0 +1,27 @@
+{
+  "name": "blockchain-proof-of-concept",
+  "version": "1.0.0",
+  "description": "Blockchain basics using JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferdousulhaque/blockchain-proof-of-concept.git"
+  },
+  "keywords": [],
+  "author": "A S Md Ferdousul Haque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferdousulhaque/blockchain-proof-of-concept/issues"
+  },
+  "homepage": "https://github.com/ferdousulhaque/blockchain-proof-of-concept#readme",
+  "dependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "@types/moment": "^2.13.0",
+    "@types/moment-timezone": "^0.5.30"
+  }
+}
