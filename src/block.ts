@@ -2,24 +2,35 @@ import { SHA256 } from "crypto-js";
 
 class Block {
     index;
-    current_time;
-    info;
+    timestamp;
+    transactionData;
     previousHash;
     hash;
     nonce;
 
-    constructor(index: any, current_time: Date, info: any, previousHash = " ") {
+    constructor(index: any, timestamp: Date, transactionData: any, previousHash = " ") {
         this.index = index;
-        this.current_time = current_time;
-        this.info = info;
+        
+        this.timestamp = timestamp;
+        
+        this.transactionData = transactionData;
+        
         this.previousHash = previousHash;
+        
         this.hash = this.getHash();
+        
         this.nonce = 0;
+        
         return this;
     }
 
     getHash(): string {
-        return SHA256(this.info + this.previousHash + this.current_time + JSON.stringify(this.info)).toString();
+        // previous block hash is used for the chain
+        return SHA256(
+            this.previousHash + 
+            this.timestamp + 
+            JSON.stringify(this.transactionData)
+        ).toString();
     }
 
     mine(difficulty: number) {

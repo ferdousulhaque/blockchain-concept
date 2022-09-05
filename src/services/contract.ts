@@ -2,7 +2,7 @@ import { Block } from "../block";
 
 interface Contract {
     // For generating the hash of the previous block
-    generateHash(previousBlock: string): any;
+    generateHash(timestamp: string, transactionData: string): any;
 
     // For getting the previous block of the chain
     previousBlock(): Block;

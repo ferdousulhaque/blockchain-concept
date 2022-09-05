@@ -8,15 +8,20 @@ class Blockchain implements Contract {
     blockchain: Block[] = [];
     difficulty: number;
 
-    constructor() {
+    constructor(beginData: object) {
         this.difficulty = 1;
 
         // Create our genesis kickoff block
-        this.blockchain = [new Block(0, new Date, JSON.stringify({"name": "Ferdous"}), "")];
+        this.blockchain = [new Block(0, new Date, beginData, "")];
     }
 
-    generateHash(previousBlock: string): any{
-        return "";
+    generateHash(timestamp: string, transactionData: string): any{
+        // previous block hash is used for the chain
+        return SHA256(
+            this.previousBlock().getHash() +
+            timestamp +
+            JSON.stringify(transactionData)
+        ).toString();
     }
 
     previousBlock(): Block{
