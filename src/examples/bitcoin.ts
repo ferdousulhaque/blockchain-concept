@@ -3,8 +3,8 @@ import { Contract } from '../services/contract';
 class Bitcoin {
     blockchain;
     bitcoin = {
-        from: "",
-        to: "",
+        sender: "",
+        recipient: "",
         amount: ""
     };
 
@@ -12,10 +12,10 @@ class Bitcoin {
         this.blockchain = blockchain;
     }
 
-    transaction(from: string, to: string, amount: string){
+    transaction(sender: string, recipient: string, amount: string){
         this.bitcoin = {
-            from: from,
-            to: to,
+            sender: sender,
+            recipient: recipient,
             amount: amount
         };
 

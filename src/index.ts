@@ -1,17 +1,27 @@
 import { AssetTracking } from './examples/assetTracking';
 import { Library } from './examples/library';
 import { Bitcoin } from './examples/bitcoin';
+import { Block } from "./block";
 import { Blockchain} from './services/blockchain';
 
 // Example with Bitcoin Transaction
-let bitcoinBlockChain = new Blockchain({ from: 'world', to: 'ferdous', amount: '5000000' });
+// Generate the genesis block and Initiate chain
+let genesisData = { from: 'world', to: 'ferdous', amount: '5000000' };
+let genesisBlock = new Block(0, new Date, genesisData, "");
+
+let bitcoinBlockChain = new Blockchain(genesisBlock);
+
+// Initiate bitcoin transaction with blockchain
 let bitcoin = new Bitcoin(bitcoinBlockChain);
 
 bitcoin.transaction("ferdous", "rakib", "35000");
-bitcoin.transaction("rakib", "rahul", "5000");
-bitcoin.transaction("rahul", "ferdous", "15000");
+// bitcoin.transaction("rakib", "rahul", "5000");
+// bitcoin.transaction("rahul", "ferdous", "15000");
 
-console.log(bitcoinBlockChain.blockchain);
+const logoutput = () => console.log(JSON.stringify(bitcoinBlockChain.blockchain, null, 5));
+
+// console.log(bitcoinBlockChain.blockchain);
+setTimeout(logoutput, 2000);
 
 // Example with Library
 // let bookBlockChain = new Blockchain();

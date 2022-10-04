@@ -11,7 +11,7 @@ interface Contract {
     generateBlock(data: any): any;
 
     // Proof of work for calculation to confirm the integrity of the chain
-    proofOfWork(): any;
+    validateChainIntegrity(): any;
 
     // For appening to the block chain
     appendToChain(newTransaction: any): void;
