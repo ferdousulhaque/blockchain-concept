@@ -19,7 +19,7 @@ class Block {
         
         this.hash = this.getHash();
         
-        this.nonce = 0;
+        this.nonce = nonce;
         
         return this;
     }

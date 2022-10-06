@@ -15,8 +15,8 @@ let bitcoinBlockChain = new Blockchain(genesisBlock);
 let bitcoin = new Bitcoin(bitcoinBlockChain);
 
 bitcoin.transaction("ferdous", "rakib", "35000");
-// bitcoin.transaction("rakib", "rahul", "5000");
-// bitcoin.transaction("rahul", "ferdous", "15000");
+bitcoin.transaction("rakib", "rahul", "5000");
+bitcoin.transaction("rahul", "ferdous", "15000");
 
 const logoutput = () => console.log(JSON.stringify(bitcoinBlockChain.blockchain, null, 5));
 

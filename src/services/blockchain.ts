@@ -13,6 +13,7 @@ class Blockchain implements Contract {
 
         // Create our genesis kickoff block
         this.blockchain = [];
+        this.blockchain.push(genesisBlock);
     }
 
     generateHash(timestamp: string, transactionData: string): any{
