@@ -7,13 +7,15 @@ import moment from 'moment';
 class Blockchain implements Contract {
     blockchain: Block[] = [];
     difficulty: number;
+    blockTime: number;
 
     constructor(genesisBlock: Block) {
         this.difficulty = 1;
+        this.blockTime = 30000;
 
         // Create our genesis kickoff block
         this.blockchain = [];
-        this.blockchain.push(genesisBlock);
+        this.blockchain.push(Object.freeze(genesisBlock));
     }
 
     generateHash(timestamp: string, transactionData: string): any{
@@ -51,9 +53,12 @@ class Blockchain implements Contract {
     appendToChain(newTransaction: any) {
         let previousBlockHash = this.previousBlock().getHash();
         // console.log(this.previousBlock());
-        let newBlock = new Block(1, new Date(), newTransaction, previousBlockHash);
+        let newBlock = new Block(this.blockchain.length, new Date(), newTransaction, previousBlockHash);
         newBlock.mine(this.difficulty);
         this.blockchain.push(Object.freeze(newBlock));
+
+        // As per bitcoin's difficulty formula
+        this.difficulty += Date.now() - parseInt(this.previousBlock().getTimestamp()) < this.blockTime ? 1 : -1;
     }
 
 

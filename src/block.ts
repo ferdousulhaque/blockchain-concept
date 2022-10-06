@@ -34,6 +34,11 @@ class Block {
         ).toString();
     }
 
+    getTimestamp(): any {
+        // previous block hash is used for the chain
+        return this.timestamp;
+    }
+
     mine(difficulty: number) {
         // Basically, it loops until our hash starts with 
         // the string 0...000 with length of <difficulty>.
