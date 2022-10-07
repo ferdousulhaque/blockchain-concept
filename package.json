@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "dev": "npx tsc-watch --onSuccess \"node ./dist/index.js\""
+    "dev": "npx tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "watch": "tsc-watch --onSuccess \"node ./dist/index.js\""
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "crypto-js": "^4.1.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.37"
+  },
+  "devDependencies": {
+    "tsc-watch": "^5.0.3"
   }
 }

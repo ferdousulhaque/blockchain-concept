@@ -17,14 +17,14 @@ class Block {
         
         this.previousHash = previousHash;
         
-        this.hash = this.getHash();
+        this.hash = this.generateHash();
         
         this.nonce = nonce;
         
         return this;
     }
 
-    getHash(): string {
+    generateHash(): string {
         // previous block hash is used for the chain
         return SHA256(
             this.previousHash + 
@@ -39,6 +39,11 @@ class Block {
         return this.timestamp;
     }
 
+    getHash(): any {
+        // previous block hash is used for the chain
+        return this.hash;
+    }
+
     mine(difficulty: number) {
         // Basically, it loops until our hash starts with 
         // the string 0...000 with length of <difficulty>.
@@ -46,7 +51,7 @@ class Block {
             // We increases our nonce so that we can get a whole different hash.
             this.nonce++;
             // Update our new hash with the new nonce value.
-            this.hash = this.getHash();
+            this.hash = this.generateHash();
         }
     }
 }
