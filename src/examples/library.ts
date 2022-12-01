@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Contract } from '../services/contract';
+import { SmartContract } from '../services/contract';
 
 class Library {
     blockchain;
@@ -9,7 +9,7 @@ class Library {
         returnOn: new Date(2022, 9)
     };
 
-    constructor(blockchain: Contract) {
+    constructor(blockchain: SmartContract) {
         this.blockchain = blockchain;
     }
 

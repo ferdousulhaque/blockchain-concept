@@ -1,10 +1,10 @@
 import { SHA256 } from "crypto-js";
 import { Block } from "../block";
-import { Contract } from "./contract";
+import { SmartContract } from "./contract";
 import moment from 'moment';
 
 
-class Blockchain implements Contract {
+class Blockchain implements SmartContract {
     blockchain: Block[] = [];
     difficulty: number;
     blockTime: number;

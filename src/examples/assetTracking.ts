@@ -1,4 +1,4 @@
-import { Contract } from '../services/contract';
+import { SmartContract } from '../services/contract';
 
 class AssetTracking {
     blockchain;
@@ -8,7 +8,7 @@ class AssetTracking {
         currentOwnerId: 0
     };
 
-    constructor(blockchain: Contract){
+    constructor(blockchain: SmartContract){
         this.blockchain = blockchain;
     }
 

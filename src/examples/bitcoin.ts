@@ -1,4 +1,4 @@
-import { Contract } from '../services/contract';
+import { SmartContract } from '../services/contract';
 
 class Bitcoin {
     blockchain;
@@ -8,7 +8,7 @@ class Bitcoin {
         amount: ""
     };
 
-    constructor(blockchain: Contract){
+    constructor(blockchain: SmartContract){
         this.blockchain = blockchain;
     }
 

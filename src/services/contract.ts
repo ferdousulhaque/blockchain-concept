@@ -1,6 +1,6 @@
 import { Block } from "../block";
 
-interface Contract {
+interface SmartContract {
     // For generating the hash of the previous block
     generateHash(timestamp: string, transactionData: string): any;
 
@@ -18,5 +18,5 @@ interface Contract {
 }
 
 export {
-    Contract
+    SmartContract
 };
